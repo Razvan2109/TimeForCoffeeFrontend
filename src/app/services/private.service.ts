@@ -16,6 +16,7 @@ export class PrivateService {
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get(this.baseUrl + 'api/users', this.privateHeaders);
+    return this.http.get(this.baseUrl + 'api/User/GetAll', this.privateHeaders);
   }
+  
 }

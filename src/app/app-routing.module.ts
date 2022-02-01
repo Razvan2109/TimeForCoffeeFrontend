@@ -28,7 +28,7 @@ const routes: Routes = [
     canActivate: [HasPermissionGuard],
   },
   {
-    path: 'profile/:id',
+    path: 'profile/:username',
     component: ProfileComponent,
   },
 ];
