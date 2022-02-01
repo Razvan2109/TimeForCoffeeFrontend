@@ -1,7 +1,11 @@
+import { TemplateBindingParseResult } from '@angular/compiler';
 import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -13,8 +17,8 @@ export class LoginComponent implements OnInit, OnChanges, OnDestroy {
   public isDisabled: boolean = false;
   public emailAndPass: string = '';
   public user: User = {
-    email: '',
     password: '',
+    username:''
   };
   public error: boolean | string = false;
   constructor(private authService: AuthService, private router: Router) {}
@@ -26,7 +30,7 @@ export class LoginComponent implements OnInit, OnChanges, OnDestroy {
   doLogin(): void {
     this.error = false;
     console.log('LOGIN CLICKED', this.user);
-    if (this.validateEmail(this.user.email)) {
+
       this.authService.login(this.user).subscribe((response: any) => {
         console.log(response);
         if (response && response.token) {
@@ -34,9 +38,14 @@ export class LoginComponent implements OnInit, OnChanges, OnDestroy {
           this.router.navigate(['/dashboard']);
         }
       });
-    } else {
-      this.error = 'Email is not valid';
-    }
+    
+  }
+
+  getAll():void{
+    this.authService.getAll().subscribe((response:any)=>{
+      console.log(response);
+      //return response;
+    });
   }
 
   validateEmail(email: string) {

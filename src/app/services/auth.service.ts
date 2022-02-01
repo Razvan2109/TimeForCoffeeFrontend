@@ -17,10 +17,19 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(data: User) {
+    console.log("Am intrat aici")
+    console.log(data)
     return this.http.post(
-      this.baseUrl + 'api/auth/login',
-      data,
-      this.publicHeaders
+      this.baseUrl + 'api/User/Login',
+      data
+      
     );
+  }
+
+  getAll(){
+    return this.http.get(
+      this.baseUrl +'api/User/GetAll',
+      this.publicHeaders
+    )
   }
 }

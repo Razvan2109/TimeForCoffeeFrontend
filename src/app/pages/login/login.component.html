@@ -1,10 +1,11 @@
-<h4>Welcome {{ user.email }}!</h4>
+<h4>Welcome {{ user.username }}!</h4>
+
 <!-- [class]="isDisabled ? 'btn btn-primary' : 'btn btn-success'" -->
 <div class="form-group">
-  <label>Email</label>
+  <label>Username</label>
   <input
     class="form-control"
-    [(ngModel)]="user.email"
+    [(ngModel)]="user.username"
     (keydown.enter)="doLogin()"
   />
 </div>
@@ -30,4 +31,11 @@
   (click)="doLogin()"
 >
   Login
+</button>
+
+<button
+  class="btn"
+  (click)="getAll()"
+>
+  Get users
 </button>
